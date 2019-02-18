@@ -7,9 +7,10 @@ import semvercmp from 'semver-compare';
 import DataManager from '../../../data/DataManager';
 import type { CoinInfo, FirmwareRange } from '../../../types';
 
+// const types = 'string' | 'number' | 'array'
 type Param = {
     name: string,
-    type?: string,
+    type?: 'string' | 'number' | 'array' | 'array buffer' | 'boolean' | 'amount' | 'object',
     obligatory?: true,
 }
 
@@ -31,6 +32,11 @@ export const validateParams = (values: Object, fields: Array<Param>): void => {
                     } else if (isNaN(parseInt(value, 10)) || parseInt(value, 10).toString(10) !== value) {
                         throw invalidParameter(`Parameter "${ field.name }" has invalid value "${value}". Integer representation expected.`);
                     }
+                } else if (field.type === 'array buffer') {
+                    if (value instanceof ArrayBuffer !== true) {
+                        throw invalidParameter(`Parameter "${ field.name }" has invalid type. "arrayBuffer" expected.`);
+                    }
+                    //  toString.call(value) === '[object ArrayBuffer]';
                 } else if (typeof value !== field.type) {
                     // invalid type
                     throw invalidParameter(`Parameter "${ field.name }" has invalid type. "${ field.type }" expected.`);

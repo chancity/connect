@@ -507,6 +507,36 @@ export default class DeviceCommands {
         return response.message;
     }
 
+    async applyFlags(params: {flags: number}): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('ApplyFlags', 'Success', params);
+        return response.message;
+    }
+
+    async applySettings(params: {}): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('ApplySettings', 'Success', params);
+        return response.message;
+    }
+
+    async backupDevice(): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('BackupDevice', 'Success');
+        return response.message;
+    }
+
+    async changePin(params: {remove?: boolean }): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('ChangePin', 'Success', params);
+        return response.message;
+    }
+
+    async firmwareErase(params: {length?: number}): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('FirmwareErase', 'Success', params);
+        return response.message;
+    }
+
+    async firmwareUpload(params: { payload: string, hash?: string }): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('FirmwareUpload', 'Success', params);
+        return response.message;
+    }
+
     // Sends an async message to the opened device.
     async call(type: string, msg: Object = {}): Promise<DefaultMessageResponse> {
         const logMessage: Object = filterForLog(type, msg);

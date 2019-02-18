@@ -173,3 +173,31 @@ export type $VerifyMessage = $Common & {
 }
 
 export type $WipeDevice = $Common;
+
+export type $ApplyFlags = $Common & {
+    flags: number,
+};
+
+export type $ApplySettings = $Common & {
+    language?: string,
+    label?: string,
+    use_passphrase?: boolean,
+    homescreen?: string,
+    passhprase_source: number, // todo: enum [0, 1, 2] // ask, device, host
+    auto_lock_delay?: number,
+};
+
+export type $BackupDevice = $Common;
+
+export type $ChangePin = $Common & {
+    remove?: boolean,
+}
+
+export type $FirmwareErase = $Common & {
+    length?: number,
+}
+
+export type $FirmwareUpload = $Common & {
+    payload: string,
+    hash?: string,
+}
