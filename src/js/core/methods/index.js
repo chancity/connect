@@ -58,6 +58,7 @@ import BackupDevice from './BackupDevice';
 import ChangePin from './ChangePin';
 import FirmwareErase from './FirmwareErase';
 import FirmwareUpload from './FirmwareUpload';
+import RecoveryDevice from './RecoveryDevice';
 
 const classes: {[k: string]: any} = {
     'blockchainDisconnect': BlockchainDisconnect,
@@ -113,6 +114,7 @@ const classes: {[k: string]: any} = {
     'changePin': ChangePin,
     'firmwareErase': FirmwareErase,
     'firmwareUpload': FirmwareUpload,
+    'recoveryDevice': RecoveryDevice,
 };
 
 export const find = (message: CoreMessage): AbstractMethod => {

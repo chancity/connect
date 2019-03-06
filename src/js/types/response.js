@@ -221,3 +221,8 @@ export type FirmwareUpload$ = {
     success: true,
     payload: Success,
 } | Unsuccessful$;
+
+export type RecoveryDevice$ = {
+    success: true,
+    payload: Success,
+} | Unsuccessful$;

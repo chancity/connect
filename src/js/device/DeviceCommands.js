@@ -512,7 +512,7 @@ export default class DeviceCommands {
         return response.message;
     }
 
-    async applySettings(params: {}): Promise<trezor.Success> {
+    async applySettings(params: trezor.ApplySettings): Promise<trezor.Success> {
         const response: MessageResponse<trezor.Success> = await this.typedCall('ApplySettings', 'Success', params);
         return response.message;
     }
@@ -534,6 +534,11 @@ export default class DeviceCommands {
 
     async firmwareUpload(params: { payload: string, hash?: string }): Promise<trezor.Success> {
         const response: MessageResponse<trezor.Success> = await this.typedCall('FirmwareUpload', 'Success', params);
+        return response.message;
+    }
+
+    async recoveryDevice(params: trezor.RecoverDeviceSettings): Promise<trezor.Success> {
+        const response: MessageResponse<trezor.Success> = await this.typedCall('RecoveryDevice', 'Success', params);
         return response.message;
     }
 
@@ -690,18 +695,13 @@ export default class DeviceCommands {
 
     _promptWord(): Promise<string> {
         return new Promise((resolve, reject) => {
-            // if (!this.session.wordEvent.emit((err, word) => {
-            //     if (err || word == null) {
-            //         reject(err);
-            //     } else {
-            //         resolve(word.toLocaleLowerCase());
-            //     }
-            // })) {
-            //     if (this.session.debug) {
-            //         console.warn('[DeviceCommands] [call] Word callback not configured, cancelling request');
-            //     }
-            reject(new Error('Word callback not configured'));
-            // }
+            this.device.emit(DEVICE.WORD, this.device, (err, word) => {
+                if (err || word == null) {
+                    reject(err);
+                } else {
+                    resolve(word.toLocaleLowerCase());
+                }
+            });
         });
     }
 

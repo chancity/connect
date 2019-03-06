@@ -201,3 +201,14 @@ export type $FirmwareUpload = $Common & {
     payload: string,
     hash?: string,
 }
+
+export type $RecoveryDevice = $Common & {
+    word_count?: 12 | 18 | 24,
+    passphrase_protection?: boolean,
+    pin_protection?: boolean,
+    language?: string,
+    enforce_wordlist?: boolean,
+    type?: 0 | 1,
+    u2f_counter?: number,
+    dry_run?: number,
+}

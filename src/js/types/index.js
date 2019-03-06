@@ -290,6 +290,7 @@ export type BackupDevice = (P.$BackupDevice) => Promise<R.BackupDevice$>;
 export type ChangePin = (P.$ChangePin) => Promise<R.ChangePin$>;
 export type FirmwareErase = (P.$FirmwareErase) => Promise<R.FirmwareErase$>;
 export type FirmwareUpload = (P.$FirmwareUpload) => Promise<R.FirmwareUpload$>;
+export type RecoveryDevice = (P.$RecoveryDevice) => Promise<R.RecoveryDevice$>;
 
 export * from './response';
 export * from './coinInfo';

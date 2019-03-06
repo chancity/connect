@@ -526,6 +526,10 @@ class TrezorConnect {
         return await call({ method: 'firmwareUpload', ...params });
     }
 
+    static recoveryDevice: $T.RecoveryDevice = async (params) => {
+        return await call({ method: 'recoveryDevice', ...params });
+    }
+
     static dispose = (): void => {
         iframe.dispose();
         if (_popupManager) {
