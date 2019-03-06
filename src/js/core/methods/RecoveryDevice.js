@@ -37,6 +37,8 @@ export default class RecoveryDevice extends AbstractMethod {
             { name: 'pin_protection', type: 'boolean' },
             { name: 'language', type: 'string' },
             { name: 'label', type: 'string' },
+            { name: 'enforce_wordlist', type: 'boolean' },
+            { name: 'type', type: 'number' },
             { name: 'u2f_counter', type: 'boolean' },
             { name: 'dry_run', type: 'boolean' },
         ]);
@@ -47,8 +49,10 @@ export default class RecoveryDevice extends AbstractMethod {
             language: payload.language,
             label: payload.label,
             enforce_wordlist: payload.enforce_wordlist,
+            type: payload.type,
             u2f_counter: payload.u2f_counter,
             dry_run: payload.dry_run,
+
         };
         this.allowDeviceMode = [...this.allowDeviceMode, UI.INITIALIZE];
         this.useDeviceState = false;
